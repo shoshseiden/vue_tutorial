@@ -8,10 +8,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="product in products" track-by="id" v-on:click.prevent="onEdit(product)">
+      <tr v-for="product in products" track-by="id" v-on:click.prevent="onEdit">
         <td>{{product.name}}</td>
         <td>{{product.description}}</td>
         <td>{{product.price}}:-</td>
+        <td><a href="#" v-on:click.prevent.stop="onRemove(product)">remove</a></td>
       </tr>
     </tbody>
   </table>
@@ -23,6 +24,9 @@ export default {
   methods: {
     onEdit(product) {
       this.$emit('edit', product)
+    },
+    onRemove(product) {
+      this.$emit('remove', product)
     }
   }
 }
